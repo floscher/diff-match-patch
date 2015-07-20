@@ -960,10 +960,10 @@ class Diff
         }
 
         $prevInternalEncoding = mb_internal_encoding();
-        if ($prevInternalEncoding != 'UCS-2LE') {
-            mb_internal_encoding('UCS-2LE');
-            $text1 = iconv($prevInternalEncoding, 'UCS-2LE', $text1);
-            $text2 = iconv($prevInternalEncoding, 'UCS-2LE', $text2);
+        if ($prevInternalEncoding != 'UTF-8') {
+            mb_internal_encoding('UTF-8');
+            $text1 = iconv($prevInternalEncoding, 'UTF-8', $text1);
+            $text2 = iconv($prevInternalEncoding, 'UTF-8', $text2);
         }
 
         // Trim off common prefix (speedup).
@@ -997,10 +997,10 @@ class Diff
             array_push($diffs, array(self::EQUAL, $commonSuffix));
         }
 
-        if ($prevInternalEncoding != 'UCS-2LE') {
+        if ($prevInternalEncoding != 'UTF-8') {
             mb_internal_encoding($prevInternalEncoding);
             foreach ($diffs as &$change) {
-                $change[1] = iconv('UCS-2LE', $prevInternalEncoding, $change[1]);
+                $change[1] = iconv('UTF-8', $prevInternalEncoding, $change[1]);
             }
             unset($change);
         }

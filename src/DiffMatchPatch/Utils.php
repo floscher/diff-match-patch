@@ -53,8 +53,8 @@ class Utils {
      * @return int Code of given char.
      */
     public static function unicodeOrd($char) {
-        if (mb_internal_encoding() != 'UCS-2LE') {
-            $char = iconv(mb_internal_encoding(), 'UCS-2LE', $char);
+        if (mb_internal_encoding() != 'UTF-8') {
+            $char = iconv(mb_internal_encoding(), 'UTF-8', $char);
         }
         $code = ord($char[0]) + 256 * ord($char[1]);
 
